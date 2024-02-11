@@ -1,0 +1,28 @@
+
+const editTask = require("../Controller/EditTask")
+const Login = require("../Controller/Login")
+const createTask = require("../Controller/createTask")
+const deleteTask = require("../Controller/deleteTask")
+const getDescr = require("../Controller/discrip")
+const getUsers = require("../Controller/getEmployee")
+const getEmployee = require("../Controller/getEmployee")
+const getTask = require("../Controller/getTask")
+const gettask = require("../Controller/getTask")
+const getDetails = require("../Controller/getdetails")
+const signUp = require("../Controller/signUp")
+const protect = require("../middleWare/tokenVerif")
+
+express=require("express")
+const router=express.Router()
+const middleWare=[protect]
+module.exports=router
+router.route('/signup').post(signUp)
+router.route('/login').get(Login)
+router.route('/verify').get(middleWare,Login)
+router.route('/getEmp').get(getUsers)
+router.route('/taskAdd/:email').post(createTask)
+router.route('/taskDelete/:id').delete(deleteTask)
+router.route('/taskEdit/:id').put(editTask)
+router.route('/getTask/:Email').get(getTask)
+router.route('/discr/:_id').get(getDescr)
+router.route('/getDeails/:Email').get(getDetails)
